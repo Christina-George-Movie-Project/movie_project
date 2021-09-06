@@ -11,7 +11,7 @@ $(document).ready(function () {
         .then(res => res.json())
         .then(movies => {
             setTimeout(function () {
-                $('#loading').css("visibility", "hidden");
+                $('#gifLoader').css("visibility", "hidden");
                 $('#content').css("visibility", "visible");
             }, 3000);
             let html = '';
@@ -24,7 +24,7 @@ $(document).ready(function () {
                     <h4>Rating: ${movie.rating}</h4>
                     <button class="delMovie">Delete</button></div>`;
 
-                movieList += `<option data-number="${movie.id}">${movie.title}</option>`
+                movieList += `<option data-rating="${movie.rating}" data-number="${movie.id}">${movie.title}</option>`
             })
 
             $('#movies').html(html);
@@ -63,18 +63,6 @@ $(document).ready(function () {
         })
         .catch(console.error);
 
-
-    // Give users the option to edit an existing movie
-    // A form should be pre-populated with the selected movie's details
-    // Like creating a movie, this should not involve any page reloads, instead your javascript code should make an ajax request when the form is submitted.
-
-
-
-
-
-
-
-
     //EVENT HANDLERS*****************************************************************
 
     $("#displayMovies").on('click', getMovies);
@@ -91,6 +79,21 @@ $(document).ready(function () {
                     <button class="delMovie">Delete</button></div>`);
     });
 
+    $('#movie-selection').on('change', function() {
+        $('#editMovie').attr("placeholder", $('#movie-selection').val())
+        $('#editRating').attr("placeholder", $("#movie-selection option:selected")[0].dataset.rating)
+    });
+
+    $("#editButton").on('click', function (e) {
+        e.preventDefault();
+        let newMovie = $("#editMovie").val();
+        let newRating = $("#editRating").val();
+        let movieId = $("#movie-selection option:selected")[0].dataset.number
+        let newObj = {title: newMovie, rating: newRating, id: movieId};
+        editMovies(newObj);
+
+    });
+
 
     $(document).on('click', '.delMovie', function (e) {
         e.preventDefault();
@@ -103,19 +106,4 @@ $(document).ready(function () {
 
     getMovies();
 });
-
-
-document.onreadystatechange= function () {
-    var state = document.readyState
-// window.onload = function () {
-    if (state === 'interactive') {
-        document.getElementById('someContent').style.visibility = "hidden";
-    } else if (state === 'complete') {
-        setTimeout(function () {
-            document.getElementById('gifLoader').style.visibility = "hidden";
-            document.getElementById('someContent').style.visibility = "visible";
-        }, 1000);
-    }
-}
-
 
