@@ -10,6 +10,10 @@ $(document).ready(function () {
     const getMovies = () => fetch(MOVIE_URL)
         .then(res => res.json())
         .then(movies => {
+            setTimeout(function () {
+                $('#loading').css("visibility", "hidden");
+                $('#content').css("visibility", "visible");
+            }, 3000);
             let html = '';
             let movieList = '';
 
@@ -42,6 +46,7 @@ $(document).ready(function () {
             console.log(`Success: created ${JSON.stringify(movie)}`);
             return movie.id; // to access the primary key of the newly created entity
         })
+        .then()
         .catch(console.error);
 
     //DELETE MOVIES FUNCTION******************************************************
@@ -80,6 +85,10 @@ $(document).ready(function () {
         let currentRating = $("#rating").val();
         let movieObj = {title: currentMovie, rating: currentRating};
         addMovies(movieObj);
+        $('#movies').append(`<div class="card mb-1" style="width: 24rem">
+                    <h3>${currentMovie}</h3>
+                    <h4>Rating: ${currentRating}</h4>
+                    <button class="delMovie">Delete</button></div>`);
     });
 
 
@@ -88,6 +97,8 @@ $(document).ready(function () {
         let currentId = $(this).parent().data('number');
         console.log(currentId)
         deleteMovie(currentId);
+        $(this).parent().remove();
+
     });
 
     getMovies();
