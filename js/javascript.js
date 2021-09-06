@@ -11,7 +11,7 @@ $(document).ready(function () {
         .then(res => res.json())
         .then(movies => {
             setTimeout(function () {
-                $('#loading').css("visibility", "hidden");
+                $('#gifLoader').css("visibility", "hidden");
                 $('#content').css("visibility", "visible");
             }, 3000);
             let html = '';
@@ -63,18 +63,6 @@ $(document).ready(function () {
         })
         .catch(console.error);
 
-
-    // Give users the option to edit an existing movie
-    // A form should be pre-populated with the selected movie's details
-    // Like creating a movie, this should not involve any page reloads, instead your javascript code should make an ajax request when the form is submitted.
-
-
-
-
-
-
-
-
     //EVENT HANDLERS*****************************************************************
 
     $("#displayMovies").on('click', getMovies);
@@ -103,19 +91,4 @@ $(document).ready(function () {
 
     getMovies();
 });
-
-
-document.onreadystatechange= function () {
-    var state = document.readyState
-// window.onload = function () {
-    if (state === 'interactive') {
-        document.getElementById('someContent').style.visibility = "hidden";
-    } else if (state === 'complete') {
-        setTimeout(function () {
-            document.getElementById('gifLoader').style.visibility = "hidden";
-            document.getElementById('someContent').style.visibility = "visible";
-        }, 1000);
-    }
-}
-
 
