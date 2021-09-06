@@ -24,7 +24,7 @@ $(document).ready(function () {
                     <h4>Rating: ${movie.rating}</h4>
                     <button class="delMovie">Delete</button></div>`;
 
-                movieList += `<option data-number="${movie.id}">${movie.title}</option>`
+                movieList += `<option data-rating="${movie.rating}" data-number="${movie.id}">${movie.title}</option>`
             })
 
             $('#movies').html(html);
@@ -77,6 +77,21 @@ $(document).ready(function () {
                     <h3>${currentMovie}</h3>
                     <h4>Rating: ${currentRating}</h4>
                     <button class="delMovie">Delete</button></div>`);
+    });
+
+    $('#movie-selection').on('change', function() {
+        $('#editMovie').attr("placeholder", $('#movie-selection').val())
+        $('#editRating').attr("placeholder", $("#movie-selection option:selected")[0].dataset.rating)
+    });
+
+    $("#editButton").on('click', function (e) {
+        e.preventDefault();
+        let newMovie = $("#editMovie").val();
+        let newRating = $("#editRating").val();
+        let movieId = $("#movie-selection option:selected")[0].dataset.number
+        let newObj = {title: newMovie, rating: newRating, id: movieId};
+        editMovies(newObj);
+
     });
 
 
