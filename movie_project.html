@@ -1,61 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
+<!--<div id='gifLoader' class="loading"></div>-->
+<!--<div id="someContent"></div>-->
 <head>
     <meta charset="UTF-8">
     <title>Movie Project</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
           integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Limelight&display=swap" rel="stylesheet">
 </head>
 <body>
-<div id="loading">
-    <img src="img/movies.gif">
-    <h1 class="loading">LOADING...</h1>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">Let's All Go To The Movies!!</h1>
+    </div>
 </div>
+<video autoplay muted loop>
+    <source src="img/movie-snacks (1).gif" type="video/mp4">
+</video>
 
 <div id="content">
 <h1>The Movie App</h1>
 <div class="movies" id="movies">
 
 </div>
+<div class="loading col-lg-12" id='gifLoader'>
+    <img src="img/ajax-movie-loader.gif" id="imgSize">
+</div>
 
-<h1>Add a Movie!</h1>
+<div class="movies row" id="movies"></div>
+
+<h2>Add a Movie!</h2>
 <form>
     <div class="form-group">
-        <label for="addMovie">Enter Movie</label>
-        <input class="addMovie" id="addMovie">
+        <label for="addMovie">Add Movie</label>
+        <input class="addMovie" id="addMovie" placeholder="Enter Name">
+
     </div>
     <div class="form-group">
-        <label for="rating">Enter Rating</label>
-        <input class="rating" id="rating">
-     </div>
+        <label for="rating">Movie Rating</label>
+        <input class="rating" id="rating" placeholder="Enter Rating">
 
-    <button type="submit" class="submitMovie" id="submitMovie">Add Movie</button>
+    </div>
+
+    <button type="submit" class="submitMovie" id="submitMovie">Submit</button>
 </form>
 
 <div id="selector" class="form-group">
-    <h1>Select Movie to Edit</h1>
-    <select class="movie-selector" id="movie-selection">
+    <h2>Select Movie to Edit</h2>
+    <select class="form-control" id="movie-selection" style="width: 45%">
     </select>
 </div>
 <div class="form-group">
-    <label for="movieTitle">Change Movie Title</label>
-    <input class="movieTitle" id="editMovie">
-    <small id="editMovieHelp" class="form-text text-muted">Change movie rating</small>
+    <label for="rating">Change Movie Title</label>
+    <input class="rating" id="editMovie" placeholder="Change Rating">
+
 </div>
-<div class="form-group" id="selectForm">
+<div class="form-group">
     <label for="rating">Change Movie Rating</label>
-    <small id="ratingHelp" class="form-text text-muted">Enter the rating</small>
-    <input type="text" class="rating" id="editRating">
+    <input class="rating" id="editRating" placeholder="Enter New Rating">
+
 </div>
 
-<button type="submit" class="submitMovie" id="editButton">Edit Movie</button>
+<button type="submit" class="submitMovie" id="editButton" style="width: 20%">Submit</button>
+</form>
+<style>
 
+    .jumbotron {
+        background-image: url("img/film-strip.gif");
+        background-size: 100% 100%;
+        /*height: 100%;*/
+    }
+</style>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossOrigin="anonymous"></script>
 <script src="js/javascript.js">
 </script>
-</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+        crossorigin="anonymous"></script>
 </body>
 </html>

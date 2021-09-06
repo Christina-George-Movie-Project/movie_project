@@ -1,21 +1,104 @@
+#gifLoader {
+    width:100%;
+    height:100%;
+    z-index:9999;
+    display: flex;
+    justify-content: center;
+    margin: 0px;
+    padding-top: 5px;
+    padding-bottom: 25px;
+}
 
-#loading img {
+#imgSize {
+    height: 44px;
+    width: 252px;
+}
+
+video{
+    position: fixed;
+    min-width: 100%;
+    min-height: 100%;
+    right: 0;
+    bottom: 0;
+    opacity: 40%;
+    z-index: -9999;
+}
+
+.movies {
+    display: flex;
+
+    justify-content: space-around;
+    /*border: 8px solid black;*/
+    text-align: center;
+    padding-right: 40px;
+    padding-left: 60px;
     width: 100%;
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    /*z-index: 1;*/
+    opacity: 85%;
+    z-index: 10;
+
 }
 
+.movies .card {
+    background: blue;
+    opacity: 80%;
+    padding-top: 20px;
 
-#loading {
-    visibility: visible;
 }
 
-#content {
-    visibility: hidden;
+#addMovieHelp {
+    color: yellow;
+}
+body {
+    background-color: #3B3B3B;
+    font-weight: bold;
+    color: yellow;
+    font-family: 'Limelight', cursive;
+    justify-content: center;
 }
 
-.movie-selector {
-    width: 500px;
+h1 {
+    text-align: center;
+    height: 40%;
+    border: 40px solid black;
+    background: black;
+    /*padding*/
+}
+
+h2 {
+    text-align: center;
+
+}
+
+.form-group {
+    text-align: center;
+}
+
+.rating {
+    padding-right: 25px;
+}
+
+#editRating {
+    padding-right: 100px;
+}
+
+#editMovie {
+    padding-right: 80px;
+}
+
+.submitMovie {
+    display: flex;
+    max-width: 100px;
+    margin: auto;
+    /*padding-left: 500px;*/
+    /*margin-left: 470px;*/
+}
+
+#movie-selection {
+    margin: auto;
+    max-width: 250px;
+}
+
+#editButton {
+    margin: auto;
+    max-width: 100px;
 }

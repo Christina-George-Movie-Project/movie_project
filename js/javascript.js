@@ -1,14 +1,13 @@
 "use strict"
+const MOVIE_URL = 'https://lyrical-intriguing-othnielia.glitch.me/movies'
+
 $(document).ready(function () {
 
-    const MOVIE_URL = 'https://lyrical-intriguing-othnielia.glitch.me/movies'
-
-
-
-
-    //FETCH REQUEST AND RENDER HTML*********************************************
+//FETCH REQUEST AND RENDER HTML*********************************************
+//     function loadScreen() {
+//
+//     }
     const getMovies = () => fetch(MOVIE_URL)
-
         .then(res => res.json())
         .then(movies => {
             setTimeout(function () {
@@ -16,7 +15,7 @@ $(document).ready(function () {
                 $('#content').css("visibility", "visible");
             }, 3000);
             let html = '';
-            let movieList = '<option>Select a Movie</option>';
+            let movieList = '';
 
             movies.forEach(movie => {
 
@@ -25,14 +24,11 @@ $(document).ready(function () {
                     <h4>Rating: ${movie.rating}</h4>
                     <button class="delMovie">Delete</button></div>`;
 
-                movieList += `<option data-rating="${movie.rating}" data-number="${movie.id}">${movie.title}</option>`
-
+                movieList += `<option data-number="${movie.id}">${movie.title}</option>`
             })
-
 
             $('#movies').html(html);
             $('#movie-selection').html(movieList);
-            //setTimeout(hideLoadingGif, 3000)
         })
         .catch(console.error);
 
@@ -53,22 +49,6 @@ $(document).ready(function () {
         .then()
         .catch(console.error);
 
-    //EDIT MOVIES FUNCTION********************************************************
-
-
-    const editMovies = (movie) => fetch(`${MOVIE_URL}/${movie.id}`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(movie)
-    })
-        .then(res => res.json())
-        .then(data => {
-            console.log(`Success: edited ${JSON.stringify(movie)}`);
-        })
-        .catch(console.error);
-
     //DELETE MOVIES FUNCTION******************************************************
 
     const deleteMovie = id => fetch(`${MOVIE_URL}/${id}`, {
@@ -80,8 +60,18 @@ $(document).ready(function () {
         .then(res => res.json())
         .then(() => {
             console.log(`Success: movie with id of ${id}`);
-            })
+        })
         .catch(console.error);
+
+
+    // Give users the option to edit an existing movie
+    // A form should be pre-populated with the selected movie's details
+    // Like creating a movie, this should not involve any page reloads, instead your javascript code should make an ajax request when the form is submitted.
+
+
+
+
+
 
 
 
@@ -101,20 +91,6 @@ $(document).ready(function () {
                     <button class="delMovie">Delete</button></div>`);
     });
 
-    $('#movie-selection').on('change', function() {
-        $('#editMovie').attr("placeholder", $('#movie-selection').val())
-        $('#editRating').attr("placeholder", $("#movie-selection option:selected")[0].dataset.rating)
-    });
-
-    $("#editButton").on('click', function (e) {
-        e.preventDefault();
-        let newMovie = $("#editMovie").val();
-        let newRating = $("#editRating").val();
-        let movieId = $("#movie-selection option:selected")[0].dataset.number
-        let newObj = {title: newMovie, rating: newRating, id: movieId};
-        editMovies(newObj);
-
-    });
 
     $(document).on('click', '.delMovie', function (e) {
         e.preventDefault();
@@ -127,5 +103,19 @@ $(document).ready(function () {
 
     getMovies();
 });
+
+
+document.onreadystatechange= function () {
+    var state = document.readyState
+// window.onload = function () {
+    if (state === 'interactive') {
+        document.getElementById('someContent').style.visibility = "hidden";
+    } else if (state === 'complete') {
+        setTimeout(function () {
+            document.getElementById('gifLoader').style.visibility = "hidden";
+            document.getElementById('someContent').style.visibility = "visible";
+        }, 1000);
+    }
+}
 
 
